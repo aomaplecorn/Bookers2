@@ -16,13 +16,9 @@
   </tbody>
 </table>
 
-<%= link_to "User編集(仮)", edit_user_path(current_user)  %>
-<!--  <a% if user_id = current_user.id %>-->
-<!--    <a%= redirect_to edit_user_path(current_user)  %>-->
-<!--  <a% else %>-->
-<!--    <a%= redirect_to %>-->
-<!--  <a% end %>-->
-<!--<a% end %>-->
+<% if book.user_id == current_user.id %>
+<%= link_to "User編集(仮)", edit_user_path(current_user) %>
+<% end %>
 
 <% book = Book.new %>
 <h2>New book</h2>
