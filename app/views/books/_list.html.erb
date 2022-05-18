@@ -1,0 +1,38 @@
+
+<div>
+  <h2>User info</h2>
+
+<%= image_tag current_user.get_profile_image(100,100) %>
+<table>
+  <tbody>
+    <tr>
+      <th>name</th>
+      <th><%= current_user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= current_user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "User編集(仮)", edit_user_path(current_user)  %>
+<!--  <a% if user_id = current_user.id %>-->
+<!--    <a%= redirect_to edit_user_path(current_user)  %>-->
+<!--  <a% else %>-->
+<!--    <a%= redirect_to %>-->
+<!--  <a% end %>-->
+<!--<a% end %>-->
+
+<% book = Book.new %>
+<h2>New book</h2>
+<%= form_with model: book, url: '/books', method: :post do |f| %>
+  <label>Title</label>
+    <%= f.text_field :title %>
+  <label>Opinion</label>
+    <%= f.text_area :body %>
+    <%= f.submit 'Create Book' %>
+<% end %>
+
+</div>
+

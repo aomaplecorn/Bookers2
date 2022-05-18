@@ -1,2 +1,29 @@
 <h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+
+<h2>User info</h2>
+
+<% if @user.errors.any? %>
+  <div>
+    <h2>
+      <%= @user.errors.count %> errors prohibited this obj from being saved:
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= image_tag @user.get_profile_image(100,100) %>
+
+<%= form_with model: @user, method: :patch do |user_info| %>
+
+<label>Name</label>
+<%= user_info.text_field :name %>
+<label>Image</label>
+<%= user_info.file_field :profile_image, accept: "image/*" %>
+<label>Introduction</label>
+<%= user_info.text_area :introduction %>
+<%= user_info.submit "Update User" %>
+<% end %>
