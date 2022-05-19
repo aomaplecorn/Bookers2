@@ -1,12 +1,15 @@
-<h1>Users#edit</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
 <h2>User info</h2>
 
 <% if @user.errors.any? %>
   <div>
-    <h2>
+    <h3>
       <%= @user.errors.count %> errors prohibited this obj from being saved:
-    </h2>
+    </h3>
     <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -15,15 +18,27 @@
   </div>
 <% end %>
 
-<%= image_tag @user.get_profile_image(100,100) %>
 
 <%= form_with model: @user, method: :patch do |user_info| %>
-
-<label>Name</label>
-<%= user_info.text_field :name %>
-<label>Image</label>
-<%= user_info.file_field :profile_image, accept: "image/*" %>
-<label>Introduction</label>
-<%= user_info.text_area :introduction %>
-<%= user_info.submit "Update User" %>
+<div class="form-group">
+  <label for="user_name">Name</label>
+  <%= user_info.text_field :name, class: 'form-control name' %>
+</div>
+<div class="form-group">
+  <label for="user_image">Image</label><br>
+  <%= image_tag current_user.get_profile_image(100,100) %>
+  <%= user_info.file_field :profile_image, accept: "image/*", class: 'form-control-file' %>
+</div>
+<div class="form-group">
+  <label for="user_introduction">Introduction</label>
+  <%= user_info.text_area :introduction, class: 'form-control introduction' %>
+</div>
+<div class="form-group">
+  <%= user_info.submit "Update User", class: 'btn btn-secondary' %>
+</div>
 <% end %>
+
+    </div>
+  </div>
+</div>
+

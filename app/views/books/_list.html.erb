@@ -1,9 +1,10 @@
 
-<div>
+
+
   <h2>User info</h2>
 
 <%= image_tag current_user.get_profile_image(100,100) %>
-<table>
+<table class="table">
   <tbody>
     <tr>
       <th>name</th>
@@ -15,20 +16,4 @@
     </tr>
   </tbody>
 </table>
-
-<% if book.user_id == current_user.id %>
-<%= link_to "User編集(仮)", edit_user_path(current_user) %>
-<% end %>
-
-<% book = Book.new %>
-<h2>New book</h2>
-<%= form_with model: book, url: '/books', method: :post do |f| %>
-  <label>Title</label>
-    <%= f.text_field :title %>
-  <label>Opinion</label>
-    <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-<% end %>
-
-</div>
 
